@@ -6,6 +6,7 @@ const connectDB = require('./config/db');
 
 // import routes
 const users = require("./routes/usersRoute");
+const products = require("./routes/productsRoute");
 
 // setup initial setup functions
 dotenv.config();
@@ -19,7 +20,8 @@ app.use(express.json());
 app.use(cors());
 
 // setup routes
-app.use('/', users);
+app.use('/users', users);
+app.use('/products', products);
 
 // start server
 const PORT = process.env.PORT || 8000;
