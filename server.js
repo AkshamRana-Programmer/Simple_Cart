@@ -2,7 +2,9 @@
 const express = require('express');
 const cors = require('cors');
 const dotenv = require('dotenv');
+const swaggerUi = require('swagger-ui-express');
 const connectDB = require('./config/db');
+const swaggerSpec = require('./config/swagger');
 
 // import routes
 const users = require("./routes/usersRoute");
@@ -22,6 +24,7 @@ app.use(cors());
 // setup routes
 app.use('/users', users);
 app.use('/products', products);
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 // start server
 const PORT = process.env.PORT || 8000;
