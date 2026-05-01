@@ -9,6 +9,7 @@ const swaggerSpec = require('./config/swagger');
 // import routes
 const users = require("./routes/usersRoute");
 const products = require("./routes/productsRoute");
+const carts = require("./routes/cartRoutes");
 
 // setup initial setup functions
 dotenv.config();
@@ -24,6 +25,7 @@ app.use(cors());
 // setup routes
 app.use('/users', users);
 app.use('/products', products);
+app.use('/carts', carts);
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 // start server

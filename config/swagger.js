@@ -6,7 +6,7 @@ const options = {
         info: {
             title: '003Cart API',
             version: '1.0.0',
-            description: 'API documentation for users and products endpoints'
+            description: 'API documentation for users, products and carts endpoints'
         },
         servers: [
             {
@@ -77,6 +77,67 @@ const options = {
                         thumbnail: {
                             type: 'string',
                             example: 'https://example.com/image.webp'
+                        },
+                        createdAt: {
+                            type: 'string',
+                            format: 'date-time'
+                        },
+                        updatedAt: {
+                            type: 'string',
+                            format: 'date-time'
+                        }
+                    }
+                },
+                CartItemInput: {
+                    type: 'object',
+                    required: ['product', 'quantity'],
+                    properties: {
+                        product: {
+                            type: 'string',
+                            example: '69dd5cb17d6c957c831c3b80'
+                        },
+                        quantity: {
+                            type: 'integer',
+                            example: 2
+                        }
+                    }
+                },
+                CartItem: {
+                    type: 'object',
+                    properties: {
+                        product: {
+                            $ref: '#/components/schemas/Product'
+                        },
+                        quantity: {
+                            type: 'integer',
+                            example: 2
+                        }
+                    }
+                },
+                Cart: {
+                    type: 'object',
+                    required: ['user', 'items'],
+                    properties: {
+                        _id: {
+                            type: 'string',
+                            example: '69dd5cb17d6c957c831c3c90'
+                        },
+                        user: {
+                            $ref: '#/components/schemas/User'
+                        },
+                        items: {
+                            type: 'array',
+                            items: {
+                                $ref: '#/components/schemas/CartItem'
+                            }
+                        },
+                        totalQuantity: {
+                            type: 'integer',
+                            example: 2
+                        },
+                        totalPrice: {
+                            type: 'number',
+                            example: 19.98
                         },
                         createdAt: {
                             type: 'string',
